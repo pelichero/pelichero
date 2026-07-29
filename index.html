@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pelichero | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --heading: #f0f6fc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    .hero {
+      padding: 5rem 0 3rem;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.5px;
+    }
+
+    .hero .handle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .hero .tagline {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d1117;
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* ─── Sections ───────────────────────────────────── */
+    section {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ─── Skills ─────────────────────────────────────── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.82rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .skill-tag .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── Project cards ──────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .lang-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ─── Timeline ───────────────────────────────────── */
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline li {
+      position: relative;
+      padding-bottom: 1.5rem;
+    }
+
+    .timeline li:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: -1.28rem;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    .timeline-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--heading);
+    }
+
+    .timeline-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ─── Contact ────────────────────────────────────── */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-list li {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 540px) {
+      .hero h1 { font-size: 1.75rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Hero ───────────────────────────────────────── -->
+  <header class="hero">
+    <div class="container">
+      <img
+        class="avatar"
+        src="https://avatars.githubusercontent.com/u/8244958?v=4"
+        alt="pelichero avatar"
+      />
+      <h1>pelichero</h1>
+      <p class="handle">@pelichero on GitHub</p>
+      <p class="tagline">
+        Software engineer passionate about distributed systems, functional programming, and cloud-native solutions.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="https://github.com/pelichero" target="_blank" rel="noopener">
+          <!-- GitHub icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-secondary" href="mailto:pelichero@gmail.com">
+          ✉ Contact
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ── Skills ──────────────────────────────────────── -->
+    <section id="skills">
+      <h2>🛠 Skills &amp; Technologies</h2>
+      <div class="skills-grid">
+        <span class="skill-tag"><span class="dot" style="background:#f7df1e"></span>Clojure</span>
+        <span class="skill-tag"><span class="dot" style="background:#b07219"></span>Java</span>
+        <span class="skill-tag"><span class="dot" style="background:#b07219"></span>Spring Boot</span>
+        <span class="skill-tag"><span class="dot" style="background:#b07219"></span>Spring Batch</span>
+        <span class="skill-tag"><span class="dot" style="background:#cc2927"></span>Apache Kafka</span>
+        <span class="skill-tag"><span class="dot" style="background:#ff9900"></span>AWS</span>
+        <span class="skill-tag"><span class="dot" style="background:#0db7ed"></span>Docker</span>
+        <span class="skill-tag"><span class="dot" style="background:#326ce5"></span>Kubernetes</span>
+        <span class="skill-tag"><span class="dot" style="background:#3fb950"></span>Functional Programming</span>
+        <span class="skill-tag"><span class="dot" style="background:#58a6ff"></span>Distributed Systems</span>
+        <span class="skill-tag"><span class="dot" style="background:#da5b0b"></span>PostgreSQL</span>
+        <span class="skill-tag"><span class="dot" style="background:#ff4154"></span>Redis</span>
+        <span class="skill-tag"><span class="dot" style="background:#2088ff"></span>CI/CD</span>
+        <span class="skill-tag"><span class="dot" style="background:#6e40c9"></span>Terraform</span>
+      </div>
+    </section>
+
+    <!-- ── Projects ────────────────────────────────────── -->
+    <section id="projects">
+      <h2>📦 Projects</h2>
+      <div class="projects-grid">
+
+        <a class="card" href="https://github.com/pelichero/code4nimbus" target="_blank" rel="noopener">
+          <span class="card-title">code4nimbus</span>
+          <span class="card-desc">Personal monorepo for studies and experiments — covering backend services, cloud integrations, and functional programming.</span>
+          <div class="card-meta">
+            <span><span class="lang-dot" style="background:#f7df1e"></span> Clojure</span>
+            <span>⭐ 13</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://github.com/pelichero/springbatch-multijob" target="_blank" rel="noopener">
+          <span class="card-title">springbatch-multijob</span>
+          <span class="card-desc">Reference architecture for Spring Batch multi-job structures — demonstrates job segregation, partitioning, and reusability patterns.</span>
+          <div class="card-meta">
+            <span><span class="lang-dot" style="background:#b07219"></span> Java</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://github.com/pelichero/confluent-parallel-consumer-application" target="_blank" rel="noopener">
+          <span class="card-title">confluent-parallel-consumer</span>
+          <span class="card-desc">High-throughput Kafka consumer application leveraging Confluent's parallel consumer library for concurrent, ordered message processing.</span>
+          <div class="card-meta">
+            <span><span class="lang-dot" style="background:#b07219"></span> Java</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://github.com/pelichero/aws-solutions-architect-tech-experts" target="_blank" rel="noopener">
+          <span class="card-title">aws-solutions-architect</span>
+          <span class="card-desc">Study notes and code samples for AWS Solutions Architect — covering core services, well-architected framework, and best practices.</span>
+          <div class="card-meta">
+            <span>☁ AWS</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── Focus Areas ──────────────────────────────────── -->
+    <section id="focus">
+      <h2>🎯 Focus Areas</h2>
+      <ul class="timeline">
+        <li>
+          <p class="timeline-title">Distributed Systems &amp; Event-Driven Architecture</p>
+          <p class="timeline-sub">Building resilient, scalable services with Kafka, CQRS/ES, and async messaging patterns.</p>
+        </li>
+        <li>
+          <p class="timeline-title">Functional Programming with Clojure</p>
+          <p class="timeline-sub">Exploring immutable data, pure functions, and data-oriented design in a JVM ecosystem.</p>
+        </li>
+        <li>
+          <p class="timeline-title">Cloud-Native on AWS</p>
+          <p class="timeline-sub">Designing cost-effective, highly available architectures using AWS-managed services and IaC.</p>
+        </li>
+        <li>
+          <p class="timeline-title">Java / Spring Ecosystem</p>
+          <p class="timeline-sub">Production-grade microservices with Spring Boot, Spring Batch, and Spring Cloud.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── Contact ──────────────────────────────────────── -->
+    <section id="contact">
+      <h2>📬 Get in Touch</h2>
+      <ul class="contact-list">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="#8b949e"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <a href="https://github.com/pelichero" target="_blank" rel="noopener">github.com/pelichero</a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Built with ❤ · <a href="https://github.com/pelichero/pelichero" target="_blank" rel="noopener">View source on GitHub</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
